@@ -8,6 +8,13 @@
 	padding: 5rem;
 }
 
+@media print {
+	:root {
+		background-color: white;
+		color: black;
+	}
+}
+
 @media (width > 600px) {
 	:root {
 		font-size: 350%;

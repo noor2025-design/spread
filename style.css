@@ -1,11 +1,26 @@
 :root {
 	--spacing: 1rem;
-	
+
 	background-color: black;
 	color: white;
-	font-family: "Roboto", sans-serif;
+	font-family: 'Roboto', sans-serif;
 	font-size: 125%;
 	padding: 5rem;
+}
+
+@media (width > 600px) {
+	:root {
+		font-size: 350%;
+	}
+}
+
+h1 {
+	font-size: 2rem;
+
+	@media (width > 800px) {
+		font-size: 8rem;
+		line-height: 50%;
+	}
 }
 
 p {

@@ -1,4 +1,6 @@
 :root {
+	--spacing: 1rem;
+	
 	background-color: black;
 	color: white;
 	font-family: "Roboto", sans-serif;
@@ -7,5 +9,5 @@
 }
 
 p {
-	padding: 3rem;
+	padding: var(--spacing);
 }

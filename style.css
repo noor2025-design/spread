@@ -1,35 +1,40 @@
 :root {
-	--spacing: 1rem;
+	/* --spacing: 1rem; */
 
-	background-color: black;
-	color: white;
+	background-color: white;
+	color: black;
 	font-family: 'Roboto', sans-serif;
 	font-size: 125%;
 	padding: 5rem;
 }
 
-@media print {
+sup {
+	color: red;
+	font-size: .8rem;
+	vertical-align: top;
+}
+/* @media print {
 	:root {
 		background-color: white;
 		color: black;
 	}
-}
+} */
 
-@media (width > 600px) {
+/* @media (width > 600px) {
 	:root {
 		font-size: 350%;
 	}
-}
+} */
 
 h1 {
 	font-size: 2rem;
 
-	@media (width > 800px) {
+	/* @media (width > 800px) {
 		font-size: 8rem;
 		line-height: 50%;
-	}
+	} */
 }
 
 p {
-	padding: var(--spacing);
+	/* padding: var(--spacing); */
 }

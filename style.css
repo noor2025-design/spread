@@ -1,11 +1,55 @@
-:root {
-	/* --spacing: 1rem; */
+@media (width < 700px) {
+	body {
+		max-inline-size: 120ch;
+	}
+}
 
+:root {
+	--fontsize: 1.3rem;
+	--lineheight: 1.5em;
+	--fontfamily: "Helvetica Neue", sans serif;
+	--bodycolor: black;
+	--pspacing: 2rem;
 	background-color: white;
-	color: black;
-	font-family: 'Roboto', sans-serif;
-	font-size: 125%;
-	padding: 5rem;
+	/* padding: 5rem; */
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	padding-inline: var(--pspacing)
+}
+
+body {
+	font-size: var(--fontsize);
+	font-family: var(--fontfamily);
+	max-inline-size: 80ch;
+	margin-inline: auto;
+}
+
+article > * {
+	margin-block-end: 2rem;
+}
+
+h1 {
+
+}
+
+h2 {
+
+}
+
+p {
+	margin-block: var(--pspacing);
+	line-height: var(--lineheight);
+}
+
+blockquote {
+
+}
+
+aside {
+
 }
 
 sup {
@@ -13,6 +57,20 @@ sup {
 	font-size: .8rem;
 	vertical-align: top;
 }
+
+ol {
+	list-style-type: decimal;
+}
+
+
+
+
+
+
+
+
+
+
 /* @media print {
 	:root {
 		background-color: white;
@@ -20,21 +78,16 @@ sup {
 	}
 } */
 
-/* @media (width > 600px) {
-	:root {
-		font-size: 350%;
+
+/* h1 {
+	font-size: 2rem;
+
+	@media (width > 800px) {
+		font-size: 8rem;
+		line-height: 50%;
 	}
 } */
 
-h1 {
-	font-size: 2rem;
-
-	/* @media (width > 800px) {
-		font-size: 8rem;
-		line-height: 50%;
-	} */
-}
-
-p {
-	/* padding: var(--spacing); */
-}
+/* p {
+	padding: var(--spacing);
+} */

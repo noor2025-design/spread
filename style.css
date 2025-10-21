@@ -45,7 +45,9 @@ h1 {
 }
 
 h2 {
-
+	text-align: center;
+	font-size: calc(var(--fontsize) * 3);
+	font-weight: 700;
 }
 
 p {
@@ -61,7 +63,10 @@ p {
 }
 
 blockquote {
-
+	max-inline-size: 40ch;
+	margin-inline: auto;
+	font-size: calc(var(--fontsize) * 1.5);
+	line-height: calc(var(--lineheigh) * 1.5);
 }
 
 aside {
@@ -76,6 +81,11 @@ sup {
 
 ol {
 	list-style-type: decimal;
+}
+
+footer {
+	text-align: center;
+
 }
 
 

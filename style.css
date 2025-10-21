@@ -1,13 +1,16 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
+
 @media (width < 700px) {
 	body {
-		max-inline-size: 120ch;
+		max-inline-size: 80ch;
 	}
 }
 
 :root {
 	--fontsize: 1.3rem;
 	--lineheight: 1.5em;
-	--fontfamily: "Helvetica Neue", sans serif;
+	--fontfamily: "Libre Franklin", sans serif;
 	--bodycolor: black;
 	--pspacing: 2rem;
 	background-color: white;
@@ -15,16 +18,20 @@
 }
 
 main {
-	display: flex;
+	/* display: flex;
 	flex-direction: column;
-	padding-inline: var(--pspacing)
+	padding-inline: var(--pspacing) */
 }
 
 body {
 	font-size: var(--fontsize);
 	font-family: var(--fontfamily);
-	max-inline-size: 80ch;
+	max-inline-size: 60ch;
 	margin-inline: auto;
+}
+
+#hero {
+	padding-block: calc(var(--pspacing) * 5);
 }
 
 article > * {
@@ -32,7 +39,9 @@ article > * {
 }
 
 h1 {
-
+	text-align: center;
+	font-size: calc(var(--fontsize) * 10);
+	font-weight: 900;
 }
 
 h2 {
@@ -42,6 +51,13 @@ h2 {
 p {
 	margin-block: var(--pspacing);
 	line-height: var(--lineheight);
+}
+
+.shadows {
+	text-shadow: -150px 0px 2px gray;
+	font-weight: 700;
+	font-size: calc(var(--fontsize) * 10);
+
 }
 
 blockquote {

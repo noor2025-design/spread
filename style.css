@@ -1,99 +1,111 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
 
-/* @media (width < 700px) {
-	body {
-		max-inline-size: 80ch;
-	}
-} */
-
-@media (width < 800px) {
-	body {
-		padding-inline: calc(var(--inlinesize));
-	}
-}
-
 :root {
-	--fontsize: 1.3rem;
-	--lineheight: 1.6em;
-	--fontfamily: "Libre Franklin", sans serif;
-	--bodycolor: black;
-	--pspacing: 2rem;
-	--inlinesize: 1em;
+	--fontsizep: 1.3rem;
+	--lineheight: 1.7em;
+	--fontfamily: "Libre Franklin", sans-serif;
+	--fontsizeh1: 10rem;
+	--fontsizeh2: 7rem;
+	--fontsizequote: 10rem;
+
+	--pmargin: 3rem;
+	--inlinemax: 90ch; 
+	--quotemax: 42ch;
+	--paddinginline: 6rem;
+	--paddingblock: 6rem;
+	--gridgap: 1.5rem;
+	/* Is ch the best unit to use to center text on screen with margin auto? */
+	
 	background-color: white;
+	--pcolor: black;
+	--shadowcolor: 0, 0, 0;
 }
 
 body {
-	font-size: var(--fontsize);
 	font-family: var(--fontfamily);
-	display: flex;
+	/* display: flex;
 	flex-direction: column;
-	align-content: center;
-	padding-inline: calc(var(--inlinesize) * 20);
+	align-content: center; */
+	inline-size: min(100%, var(--inlinemax));
+	/* Is this best practice to center responsively? */
+	margin: auto;
+	padding-inline: var(--paddinginline);
 }
 
 #hero {
-	padding-block: calc(var(--pspacing) * 5);
+	justify-items: center;
+	padding-block: calc(var(--paddingblock) * 2);
+	text-align: center;
 }
 
-article {
-	margin-block-end: calc(var(--pspacing) * 5)
+main {
+	font-size: var(--fontsizep);
+	display: grid; 
+	/* grid or flex?? */
+	gap: calc(var(--gridgap) * 5); 
+	/* (so in between the articles space) */
+	margin-block-end: var(--paddingblock);
 }
+
+/* Why can't I just use margin-block for this or is grid/flex preferred if it's just aligning paragraphs in one column? */
+
 
 article > * {
-	margin-block-end: var(--pspacing);
+	margin-block-end: calc(var(--pmargin) * 1.5);
+	/* (so space between header, section, aside) */
 }
 
 h1 {
 	text-align: center;
-	font-size: calc(var(--fontsize) * 10);
+	font-size: var(--fontsizeh1);
 	font-weight: 900;
+}
+
+#written-by, #designed-by {
+	font-size: var(--fontsizep);
+}
+
+#written-by {
+	color: gray;
+}
+
+#designed-by {
+
 }
 
 h2 {
 	text-align: center;
-	font-size: calc(var(--fontsize) * 3);
+	font-size: var(--fontsizeh2);
 	font-weight: 700;
 }
 
 p {
-	margin-block: var(--pspacing);
+	margin-block: var(--pmargin);
 	line-height: var(--lineheight);
+	color: var(--pcolor);
+	text-align: left;
 }
 
-.n-shadow {
-	text-shadow: 
-		-100px 0px 9px lightgray,
-		-200px 0px 10px lightgray,
-		-300px 0px 11px lightgray,
-		-400px 0px 12px lightgray;
-
-}
-.a-shadow {
-	text-shadow: 
-		100px 0px 9px lightgray,
-		200px 0px 10px lightgray,
-		300px 0px 11px lightgray,
-		400px 0px 12px lightgray;
-
-}
-
-.quote-left {
-	text-shadow: 
-		-100px 0px 9px lightgray,
-		-200px 0px 10px lightgray,
-		-300px 0px 11px lightgray,
-		-400px 0px 12px lightgray;
-}
 blockquote {
-	/* max-inline-size: 40ch; */
-	margin-inline: auto;
-	font-size: calc(var(--fontsize) * 2);
-	line-height: calc(var(--lineheigh) * 1.5);
-	padding-inline: calc(var(--pspacing) * 2);
-	padding-block: calc(var(--pspacing) * 4);
+	font-size: var(--fontsizequote);
+	line-height: calc(var(--lineheight) / 1.3);
 	text-align: center;
 	font-weight: 600;
+	inline-size: min(100%, var(--quotemax));
+	margin-inline: auto;
+	padding-inline: 1rem;
+}
+
+.quote-left, .quote-right {
+	font-size: calc(var(--fontsizeh1) * 3);
+	line-height: .6;
+	margin: 0;
+	color: rgba(var(--shadowcolor), .18);
+}
+
+.quote-right {
+	text-align: right;
 }
 
 aside {
@@ -102,46 +114,151 @@ aside {
 
 sup {
 	color: red;
-	font-size: .8rem;
+	font-size: calc(var(--fontsizep) / 2);
 	vertical-align: top;
 }
 
 ol {
 	list-style-type: decimal;
+	font-size: calc(var(--fontsizep) * .8);
 }
 
 footer {
 	text-align: center;
-	margin-block-end: calc(var(--pspacing) * 5)
-
+	margin-block-end: var(--paddingblock);
+	font-size: var(--fontsizeh2);
 }
 
+/* ------------------Shadows-------------------- */
 
+.left-shadow {
+	color: black;
+	text-shadow:
+		-.7em 0 .1em rgba(var(--shadowcolor), .4),
+		-1.4em 0 .12em rgba(var(--shadowcolor), .3),
+		-2.1em 0 .13em rgba(var(--shadowcolor), .2),
+		-2.8em 0 .14em rgba(var(--shadowcolor), .1),
+		-3.5em 0 .14em rgba(var(--shadowcolor), .1),
+		-4.2em 0 .14em rgba(var(--shadowcolor), .1),
+		-4.9em 0 .14em rgba(var(--shadowcolor), .1),
+		-5.6em 0 .14em rgba(var(--shadowcolor), .1),
+		-6.3em 0 .14em rgba(var(--shadowcolor), .1),
+		-7em 0 .14em rgba(var(--shadowcolor), .1),
+		-7.7em 0 .14em rgba(var(--shadowcolor), .1),
+		-8.4em 0 .14em rgba(var(--shadowcolor), .1),
+		-9.1em 0 .14em rgba(var(--shadowcolor), .1),
+		-9.8em 0 .14em rgba(var(--shadowcolor), .1),
+		-10.5em 0 .14em rgba(var(--shadowcolor), .1),
+		-11.2em 0 .14em rgba(var(--shadowcolor), .1),
+		-11.9em 0 .14em rgba(var(--shadowcolor), .1),
+		-12.6em 0 .14em rgba(var(--shadowcolor), .1),
+		-13.3em 0 .14em rgba(var(--shadowcolor), .1),
+		-14em 0 .14em rgba(var(--shadowcolor), .1),
+		-14.7em 0 .14em rgba(var(--shadowcolor), .1),
+		-15.4em 0 .14em rgba(var(--shadowcolor), .1),
+		-16.1em 0 .14em rgba(var(--shadowcolor), .1),
+		-16.8em 0 .14em rgba(var(--shadowcolor), .1);
+}
 
+/* Surely there has to be an easier way to write this?? */
 
+.right-shadow {
+	color: black;
+	text-shadow:
+		0.7em 0 .1em rgba(var(--shadowcolor), .4),
+		1.4em 0 .12em rgba(var(--shadowcolor), .3),
+		2.1em 0 .13em rgba(var(--shadowcolor), .2),
+		2.8em 0 .14em rgba(var(--shadowcolor), .1),
+		3.5em 0 .14em rgba(var(--shadowcolor), .1),
+		4.2em 0 .14em rgba(var(--shadowcolor), .1),
+		4.9em 0 .14em rgba(var(--shadowcolor), .1),
+		5.6em 0 .14em rgba(var(--shadowcolor), .1),
+		6.3em 0 .14em rgba(var(--shadowcolor), .1),
+		7em 0 .14em rgba(var(--shadowcolor), .1),
+		7.7em 0 .14em rgba(var(--shadowcolor), .1),
+		8.4em 0 .14em rgba(var(--shadowcolor), .1),
+		9.1em 0 .14em rgba(var(--shadowcolor), .1),
+		9.8em 0 .14em rgba(var(--shadowcolor), .1),
+		10.5em 0 .14em rgba(var(--shadowcolor), .1),
+		11.2em 0 .14em rgba(var(--shadowcolor), .1),
+		11.9em 0 .14em rgba(var(--shadowcolor), .1),
+		12.6em 0 .14em rgba(var(--shadowcolor), .1),
+		13.3em 0 .14em rgba(var(--shadowcolor), .1),
+		14em 0 .14em rgba(var(--shadowcolor), .1),
+		14.7em 0 .14em rgba(var(--shadowcolor), .1),
+		15.4em 0 .14em rgba(var(--shadowcolor), .1),
+		16.1em 0 .14em rgba(var(--shadowcolor), .1),
+		16.8em 0 .14em rgba(var(--shadowcolor), .1);
+}
 
+.quote-left-shadow {
+	color: black;
+	text-shadow:
+		-.4em 0 .05em rgba(var(--shadowcolor), .5),
+		-.8em 0 .06em rgba(var(--shadowcolor), .4),
+		-1.2em 0 .07em rgba(var(--shadowcolor), .3),
+		-1.6em 0 .08em rgba(var(--shadowcolor), .2);
+}
 
+.quote-right-shadow {
+	color: black;
+	text-shadow:
+		.4em 0 .05em rgba(var(--shadowcolor), .5),
+		.8em 0 .06em rgba(var(--shadowcolor), .4),
+		1.2em 0 .07em rgba(var(--shadowcolor), .3),
+		1.6em 0 .08em rgba(var(--shadowcolor), .2);
+}
 
+/* ------------ Media Queries ----------*/
 
+@media (width <= 480px) {
+	:root {
+		--fontsizeh1: 3.8rem;
+		--fontsizeh2: 1.8rem;
+		--fontsizequote: 1.3rem;
+		--paddinginline: 1.25rem;
+		--paddingblock: 4rem;
+		--inlinemax: 64ch;
+	}
 
+	#hero {
+		padding-block: var(--paddingblock);
+	}
+}
+
+@media (481px <= width <= 700px) {
+	:root {
+		--fontsizeh1: 5rem;
+		--fontsizeh2: 2.1rem;
+		--fontsizequote: 1.45rem;
+		--paddinginline: 2rem;
+		--paddingblock: 5rem;
+	}
+}
+
+@media (700px <= width <= 1200px) {
+	:root {
+		--fontsizeh1: 6.5rem;
+		--fontsizeh2: 2.5rem;
+		--fontsizequote: 1.6rem;
+		--paddinginline: 4rem;
+		--paddingblock: 5rem;
+	}
+}
+
+@media (width >= 1200px) {
+	:root {
+		--fontsizeh1: 8.5rem;
+		--fontsizeh2: 3rem;
+		--fontsizequote: 1.8rem;
+		--paddinginline: 8rem;
+		--paddingblock: 7rem;
+	}
+}
 
 /* @media print {
 	:root {
 		background-color: white;
 		color: black;
 	}
-} */
-
-
-/* h1 {
-	font-size: 2rem;
-
-	@media (width > 800px) {
-		font-size: 8rem;
-		line-height: 50%;
-	}
-} */
-
-/* p {
-	padding: var(--spacing);
 } */

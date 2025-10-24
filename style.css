@@ -67,11 +67,24 @@ p {
 		-200px 0px 10px lightgray,
 		-300px 0px 11px lightgray,
 		-400px 0px 12px lightgray;
-	font-weight: 700;
-	font-size: calc(var(--fontsize) * 10);
+
+}
+.a-shadow {
+	text-shadow: 
+		100px 0px 9px lightgray,
+		200px 0px 10px lightgray,
+		300px 0px 11px lightgray,
+		400px 0px 12px lightgray;
 
 }
 
+.quote-left {
+	text-shadow: 
+		-100px 0px 9px lightgray,
+		-200px 0px 10px lightgray,
+		-300px 0px 11px lightgray,
+		-400px 0px 12px lightgray;
+}
 blockquote {
 	/* max-inline-size: 40ch; */
 	margin-inline: auto;

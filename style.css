@@ -1,41 +1,47 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
 
-@media (width < 700px) {
+/* @media (width < 700px) {
 	body {
 		max-inline-size: 80ch;
+	}
+} */
+
+@media (width < 800px) {
+	body {
+		padding-inline: calc(var(--inlinesize));
 	}
 }
 
 :root {
 	--fontsize: 1.3rem;
-	--lineheight: 1.5em;
+	--lineheight: 1.6em;
 	--fontfamily: "Libre Franklin", sans serif;
 	--bodycolor: black;
 	--pspacing: 2rem;
+	--inlinesize: 1em;
 	background-color: white;
-	/* padding: 5rem; */
-}
-
-main {
-	/* display: flex;
-	flex-direction: column;
-	padding-inline: var(--pspacing) */
 }
 
 body {
 	font-size: var(--fontsize);
 	font-family: var(--fontfamily);
-	max-inline-size: 60ch;
-	margin-inline: auto;
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	padding-inline: calc(var(--inlinesize) * 20);
 }
 
 #hero {
 	padding-block: calc(var(--pspacing) * 5);
 }
 
+article {
+	margin-block-end: calc(var(--pspacing) * 5)
+}
+
 article > * {
-	margin-block-end: 2rem;
+	margin-block-end: var(--pspacing);
 }
 
 h1 {
@@ -55,22 +61,30 @@ p {
 	line-height: var(--lineheight);
 }
 
-.shadows {
-	text-shadow: -150px 0px 2px gray;
+.n-shadow {
+	text-shadow: 
+		-100px 0px 9px lightgray,
+		-200px 0px 10px lightgray,
+		-300px 0px 11px lightgray,
+		-400px 0px 12px lightgray;
 	font-weight: 700;
 	font-size: calc(var(--fontsize) * 10);
 
 }
 
 blockquote {
-	max-inline-size: 40ch;
+	/* max-inline-size: 40ch; */
 	margin-inline: auto;
-	font-size: calc(var(--fontsize) * 1.5);
+	font-size: calc(var(--fontsize) * 2);
 	line-height: calc(var(--lineheigh) * 1.5);
+	padding-inline: calc(var(--pspacing) * 2);
+	padding-block: calc(var(--pspacing) * 4);
+	text-align: center;
+	font-weight: 600;
 }
 
 aside {
-
+	font-size: calc(var(--fontsize) * .9);
 }
 
 sup {
@@ -85,6 +99,7 @@ ol {
 
 footer {
 	text-align: center;
+	margin-block-end: calc(var(--pspacing) * 5)
 
 }
 

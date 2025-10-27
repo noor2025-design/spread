@@ -25,10 +25,6 @@
 
 	scroll-behavior: smooth;
 
-	--ripple-speed: 3.5s;
-	--band: 28%;
-	--shadow-reach: 18em; /* must be >= your largest shadow offset (16.8em) */
-
 }
 
 body {
@@ -125,11 +121,11 @@ em {
 		-1.4em 0 .12em rgba(var(--shadowcolor), .3); */
 }
 
-.links:hover::first-letter {
+/* .links:hover::first-letter {
 	text-shadow:
 		-.7em 0 .1em rgba(var(--shadowcolor), .4),
 		-1.4em 0 .12em rgba(var(--shadowcolor), .3);
-}
+} */
 
 
 .blockquote-section {
@@ -405,13 +401,21 @@ footer {
 
 
 @media (width <= 950px) {
-	/* h1 .right-shadow {
+	h1 .left-shadow {
+		text-shadow:
+			0 .7em .1em rgba(var(--shadowcolor), .4),
+			0 1.4em .12em rgba(var(--shadowcolor), .3),
+			0 2.1em .13em rgba(var(--shadowcolor), .2),
+			0 2.8em .14em rgba(var(--shadowcolor), .1);
+	}
+	
+	h1 .right-shadow {
 		text-shadow:
 			0 -.7em .1em rgba(var(--shadowcolor), .4),
 			0 -1.4em .12em rgba(var(--shadowcolor), .3),
 			0 -2.1em .13em rgba(var(--shadowcolor), .2),
 			0 -2.8em .14em rgba(var(--shadowcolor), .1);
-	} */
+	}
 
 	.quote-left {
 		text-align: end;
@@ -461,15 +465,15 @@ footer {
 
 }
 
-@media (prefers-reduced-motion: reduce) {
-	h1 .right-shadow::after { 
-		animation: none;
-	}
-}
-
 @media print {
 	:root {
 		background-color: white;
 		color: black;
 	}
 }
+
+/* @media (prefers-reduced-motion: reduce) {
+	h1 .right-shadow::after { 
+		animation: none;
+	}
+} */

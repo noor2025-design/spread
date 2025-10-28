@@ -12,16 +12,14 @@
 	--lineheightquote: 1.1em;
 
 	--pmargin: 3rem;
-	--inlinemax: 90ch; 
+	--inlinemax: 60ch; 
 	--quotemax: 42ch;
 	--paddinginline: 6rem;
-	--paddingblock: 6rem;
+	--marginblock: 6rem;
 	--gap: 1.5rem;
 	
 	background-color: white;
-	--pcolor: black;
 	--shadowcolor: 0, 0, 0;
-	--secondarycolor: 255, 0, 0;
 
 	scroll-behavior: smooth;
 
@@ -29,48 +27,48 @@
 
 body {
 	font-family: var(--fontfamily);
-	display: flex; /* (for header, main, footer) */
-	gap: var(--gap);
-	flex-direction: column;
-	align-content: center;
-	inline-size: min(100%, var(--inlinemax));
-	margin: auto;
-	padding-inline: var(--paddinginline);
 }
+
+
+
+
+
+
+
+
+
+/* ------------------Hero-------------------- */
 
 #hero {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	justify-items: center;
-	padding-block: calc(var(--paddingblock) * 3);
+	width: 100vw;
+	height: 100vh;
 	text-align: center;
-	/* overflow-y: hidden; */
-	/* /* overflow-x: visible; */
+	overflow: hidden;
 }
 
-main {
-	font-size: var(--fontsizep);
-	display: flex; 
+#hero section {
+	display: flex;
 	flex-direction: column;
-	gap: calc(var(--gap) * 5); /* (space in between the articles space) */
-	/* margin-block-end: var(--paddingblock); */
-}
-
-/* Why can't I just use margin-block for this or is grid/flex preferred if it's just aligning paragraphs in one column? */
-
-article > * {
-	margin-block-end: calc(var(--pmargin) * 1.5); /* (space between header, section, aside) */
+	justify-content: center;	
+	text-align: center;
+	inline-size: fit-content;
+	align-items: center;
+	margin: auto;
 }
 
 h1 {
 	text-align: center;
 	font-size: var(--fontsizeh1);
 	font-weight: 900;
+	cursor: pointer;
 }
 
 #written-by, #designed-by {
 	font-size: var(--fontsizep);
+	padding-inline-end: 
 }
 
 #written-by {
@@ -82,16 +80,41 @@ h1 {
 	align-self: start;
 }
 
+
+
+
+
+
+
+
+/* ------------------Main-------------------- */
+
+main {
+	font-size: var(--fontsizep);
+	inline-size: min(100%, var(--inlinemax));
+	margin: auto;
+}
+
+article {
+	margin-block-end: calc(var(--marginblock) * 2);
+}
+/* Why can't I just use margin-block for this or is grid/flex preferred if it's just aligning paragraphs in one column? */
+
+article > * {
+	/* margin-block-end: calc(var(--pmargin) * 1.5);  */
+	/* (space between header, section, aside) */
+}
+
 article > header {
 	position: sticky;
 	top: 0;
 	z-index: 2;
 	background: white;
 	padding-block: calc(var(--pmargin) / 2);
-	margin: 0;
 	border-bottom-style: solid;
 	border-bottom-width: .001rem;
 	border-bottom-color: lightgray;
+	/* filter: drop-shadow(0 .5rem 2rem rgb(0, 0, 0, .1)); */
 }
 
 h2 {
@@ -105,43 +128,52 @@ h2 {
 p {
 	margin-block: var(--pmargin);
 	line-height: var(--lineheightp);
-	color: var(--pcolor);
+	color: var(--shadowcolor);
 	text-align: left;
 	font-size: var(--fontsizep);
+	hyphens: auto;
 }
 
 em {
 	font-style: italic; 
 }
 
-.links:hover {
-	color: red;
-	/* text-shadow:
-		-.7em 0 .1em rgba(var(--shadowcolor), .4),
-		-1.4em 0 .12em rgba(var(--shadowcolor), .3); */
+.nobr {
+	white-space: nowrap;
 }
 
-/* .links:hover::first-letter {
-	text-shadow:
-		-.7em 0 .1em rgba(var(--shadowcolor), .4),
-		-1.4em 0 .12em rgba(var(--shadowcolor), .3);
-} */
+.links {
+	font-weight: 700;
+	text-shadow: 0 .5em .2em rgba(var(--shadowcolor), .3);
+}
 
+.links:hover {
+	font-size: calc(var(--fontsizep) * 1.5);
+}
+
+.links:visited {
+	/* color: red; */
+	color: rgba(var(--shadowcolor), .5);
+}
+
+
+
+
+
+
+
+
+
+
+/* ------------------Blockquotes-------------------- */
 
 .blockquote-section {
-	/* position: relative; */
 	display: flex;
 	flex-direction: column;
 	gap: 0;
-	/* margin-block-start: calc(var(--pmargin) * 5); */
-	/* padding-block: var(--pmargin); */
-	/* flex-wrap: wrap; */
-	/* block-size:  */
-	/* justify-content: center;
-	column-gap: 0; */
-	/* row-gap: 0; */
-	/* margin-block: var(--pmargin); */
-	/* margin-block-start: calc(var(--pmargin) * 5); */
+	margin-block: var(--marginblock);
+	/* background-color: red; DELETE LATER, JUST FOR FRAMING REFERENCE  */
+	padding-block: 0;
 }
 
 .blockquote-section blockquote {
@@ -151,43 +183,54 @@ em {
 	font-weight: 600;
 	inline-size: min(100%, var(--quotemax));
 	margin-inline: auto;
-	/* margin-block: 0;
-	padding: 0; */
+	padding: 0;
+	margin-block: 0;
 }
 
 .quote-left, 
 .quote-right {
 	font-size: calc(var(--fontsizeh1) * 3);
-	/* height: 0; */
-	line-height: 0;
-	/* margin: 0; */
-	color: rgba(var(--shadowcolor), .18);
-	/* align-self: stretch; */
+	line-height: 1;
+	/* background-color: blue; DELETE LATER, JUST FOR FRAMING REFERENCE  */
 }
 
-/* .quote-left::before, 
+.quote-left {
+	text-align: start;
+}
+
+.quote-right {
+	text-align: end;
+	justify-items: end;
+}
+
+.quote-left::before, 
 .quote-left::after,
 .quote-right::before, 
 .quote-right::after {
 	content: '';
 	display: block;
 	visibility: hidden;
-	margin-block-end: -.5em;
-} */
-
-
-.quote-left {
-	/* justify-self: flex-start; */
-	text-align: start;
-	margin-block-start: calc(var(--pmargin) * 5)
-	/* line-height: 0; */
 }
 
-.quote-right {
-	/* justify-self: flex-end; */
-	text-align: end;
-	margin-block-start: calc(var(--pmargin) * 6)
+.quote-left::before,
+.quote-right::before {
+	margin-block-start: -.11em;
 }
+
+.quote-left::after, 
+.quote-right::after {
+	margin-block-end: -.64em;
+}
+
+
+
+
+
+
+
+
+
+/* ------------------Footnotes-------------------- */
 
 aside {
 	font-size: calc(var(--fontsizep) * .9);
@@ -203,25 +246,32 @@ ol {
 	list-style-type: decimal;
 	font-size: calc(var(--fontsizep) * .8);
 	list-style-position: inside;
+	line-height: var(--lineheightp);
 }
 
 ol li::marker {
 	color: red;
 }
 
+
+
+
+
+
+
+/* ------------------Footer-------------------- */
+
 footer {
 	text-align: center;
-	margin-block-end: calc(var(--paddingblock) * 2);
-	font-size: calc(var(--fontsizep) * 1.3);
+	margin-block-end: calc(var(--marginblock) * 2);
+	font-size: calc(var(--fontsizep) * 1.5);
+	font-weight: 700;
 }
 
-/* ------------------Shadows-------------------- */
-
-/* Surely there has to be an easier way to write this?? */
-
-.left-shadow {
+footer .left-shadow {
 	color: black;
 	text-shadow:
+		/* left */
 		-.7em 0 .1em rgba(var(--shadowcolor), .4),
 		-1.4em 0 .12em rgba(var(--shadowcolor), .3),
 		-2.1em 0 .13em rgba(var(--shadowcolor), .2),
@@ -248,9 +298,10 @@ footer {
 		-16.8em 0 .14em rgba(var(--shadowcolor), .1);
 }
 
-.right-shadow {
+footer .right-shadow {
 	color: black;
 	text-shadow:
+		/* right */
 		0.7em 0 .1em rgba(var(--shadowcolor), .4),
 		1.4em 0 .12em rgba(var(--shadowcolor), .3),
 		2.1em 0 .13em rgba(var(--shadowcolor), .2),
@@ -275,6 +326,96 @@ footer {
 		15.4em 0 .14em rgba(var(--shadowcolor), .1),
 		16.1em 0 .14em rgba(var(--shadowcolor), .1),
 		16.8em 0 .14em rgba(var(--shadowcolor), .1);
+}
+
+
+
+
+
+
+
+
+
+/* ------------------Shadows-------------------- */
+
+/* Surely there has to be an easier way to write this??? */
+
+header .left-shadow {
+	color: black;
+	text-shadow:
+		/* left */
+		-.7em 0 .1em rgba(var(--shadowcolor), .4),
+		-1.4em 0 .12em rgba(var(--shadowcolor), .3),
+		-2.1em 0 .13em rgba(var(--shadowcolor), .2),
+		-2.8em 0 .14em rgba(var(--shadowcolor), .1),
+		-3.5em 0 .14em rgba(var(--shadowcolor), .1),
+		-4.2em 0 .14em rgba(var(--shadowcolor), .1),
+		-4.9em 0 .14em rgba(var(--shadowcolor), .1),
+		-5.6em 0 .14em rgba(var(--shadowcolor), .1),
+		-6.3em 0 .14em rgba(var(--shadowcolor), .1),
+		-7em 0 .14em rgba(var(--shadowcolor), .1),
+		-7.7em 0 .14em rgba(var(--shadowcolor), .1),
+		-8.4em 0 .14em rgba(var(--shadowcolor), .1),
+		-9.1em 0 .14em rgba(var(--shadowcolor), .1),
+		-9.8em 0 .14em rgba(var(--shadowcolor), .1),
+		-10.5em 0 .14em rgba(var(--shadowcolor), .1),
+		-11.2em 0 .14em rgba(var(--shadowcolor), .1),
+		-11.9em 0 .14em rgba(var(--shadowcolor), .1),
+		-12.6em 0 .14em rgba(var(--shadowcolor), .1),
+		-13.3em 0 .14em rgba(var(--shadowcolor), .1),
+		-14em 0 .14em rgba(var(--shadowcolor), .1),
+		-14.7em 0 .14em rgba(var(--shadowcolor), .1),
+		-15.4em 0 .14em rgba(var(--shadowcolor), .1),
+		-16.1em 0 .14em rgba(var(--shadowcolor), .1),
+		-16.8em 0 .14em rgba(var(--shadowcolor), .1),
+
+		/* down */
+		-4.9em .7em .14em rgba(var(--shadowcolor), .1),
+		-4.9em 1.4em .14em rgba(var(--shadowcolor), .1),
+		-4.9em 2.1em .14em rgba(var(--shadowcolor), .1),
+		-4.9em 2.8em .14em rgba(var(--shadowcolor), .1),
+		-4.9em 3.5em .14em rgba(var(--shadowcolor), .1),
+		-4.9em 4.2em .14em rgba(var(--shadowcolor), .1),
+		-4.9em 4.9em .14em rgba(var(--shadowcolor), .1);
+}
+
+header .right-shadow {
+	color: black;
+	text-shadow:
+		/* right */
+		0.7em 0 .1em rgba(var(--shadowcolor), .4),
+		1.4em 0 .12em rgba(var(--shadowcolor), .3),
+		2.1em 0 .13em rgba(var(--shadowcolor), .2),
+		2.8em 0 .14em rgba(var(--shadowcolor), .1),
+		3.5em 0 .14em rgba(var(--shadowcolor), .1),
+		4.2em 0 .14em rgba(var(--shadowcolor), .1),
+		4.9em 0 .14em rgba(var(--shadowcolor), .1),
+		5.6em 0 .14em rgba(var(--shadowcolor), .1),
+		6.3em 0 .14em rgba(var(--shadowcolor), .1),
+		7em 0 .14em rgba(var(--shadowcolor), .1),
+		7.7em 0 .14em rgba(var(--shadowcolor), .1),
+		8.4em 0 .14em rgba(var(--shadowcolor), .1),
+		9.1em 0 .14em rgba(var(--shadowcolor), .1),
+		9.8em 0 .14em rgba(var(--shadowcolor), .1),
+		10.5em 0 .14em rgba(var(--shadowcolor), .1),
+		11.2em 0 .14em rgba(var(--shadowcolor), .1),
+		11.9em 0 .14em rgba(var(--shadowcolor), .1),
+		12.6em 0 .14em rgba(var(--shadowcolor), .1),
+		13.3em 0 .14em rgba(var(--shadowcolor), .1),
+		14em 0 .14em rgba(var(--shadowcolor), .1),
+		14.7em 0 .14em rgba(var(--shadowcolor), .1),
+		15.4em 0 .14em rgba(var(--shadowcolor), .1),
+		16.1em 0 .14em rgba(var(--shadowcolor), .1),
+		16.8em 0 .14em rgba(var(--shadowcolor), .1),
+
+		/* down */
+		4.9em .7em .14em rgba(var(--shadowcolor), .1),
+		4.9em 1.4em .14em rgba(var(--shadowcolor), .1),
+		4.9em 2.1em .14em rgba(var(--shadowcolor), .1),
+		4.9em 2.8em .14em rgba(var(--shadowcolor), .1),
+		4.9em 3.5em .14em rgba(var(--shadowcolor), .1),
+		4.9em 4.2em .14em rgba(var(--shadowcolor), .1),
+		4.9em 4.9em .14em rgba(var(--shadowcolor), .1);			
 }
 
 .top-shadow {
@@ -317,6 +458,375 @@ footer {
 			0 4.2em .14em rgba(var(--shadowcolor), .1),
 			0 4.9em .14em rgba(var(--shadowcolor), .1),
 			0 5.6em .14em rgba(var(--shadowcolor), .1),
+}
+
+.quote-left {
+	color: black;
+	text-shadow:
+		-.4em 0 .05em rgba(var(--shadowcolor), .5),
+		-.8em 0 .06em rgba(var(--shadowcolor), .4),
+		-1.2em 0 .07em rgba(var(--shadowcolor), .3),
+		-1.6em 0 .08em rgba(var(--shadowcolor), .2),
+		-2em 0 .08em rgba(var(--shadowcolor), .2),
+		-2.4em 0 .08em rgba(var(--shadowcolor), .2),
+		-2.8em 0 .08em rgba(var(--shadowcolor), .2),
+		-3.2em 0 .08em rgba(var(--shadowcolor), .2);
+}
+
+.quote-right {
+	color: black;
+	text-shadow:
+		.4em 0 .05em rgba(var(--shadowcolor), .5),
+		.8em 0 .06em rgba(var(--shadowcolor), .4),
+		1.2em 0 .07em rgba(var(--shadowcolor), .3),
+		1.6em 0 .08em rgba(var(--shadowcolor), .2),
+		2em 0 .08em rgba(var(--shadowcolor), .2),
+		2.4em 0 .08em rgba(var(--shadowcolor), .2),
+		2.8em 0 .08em rgba(var(--shadowcolor), .2),
+		3.2em 0 .08em rgba(var(--shadowcolor), .2);
+}
+
+
+
+
+
+
+/* ---------------- Animation -----------------*/
+
+#hero .left-shadow {
+	animation-name: shadow-animation-left;
+	animation-direction: normal;
+	animation-duration: 5s;
+	animation-iteration-count: infinite;
+}
+
+			@keyframes shadow-animation-left {
+			0% {
+				text-shadow: 
+					0 0 .1em rgba(var(--shadowcolor), .4);
+			}
+			50% {
+				text-shadow: 
+					-.7em 0 .1em rgba(var(--shadowcolor), .4),
+					-1.4em 0 .12em rgba(var(--shadowcolor), .3),
+					-2.1em 0 .13em rgba(var(--shadowcolor), .2),
+					-2.8em 0 .14em rgba(var(--shadowcolor), .1),
+					-3.5em 0 .14em rgba(var(--shadowcolor), .1),
+					-4.2em 0 .14em rgba(var(--shadowcolor), .1),
+					-4.9em 0 .14em rgba(var(--shadowcolor), .1),
+					-5.6em 0 .14em rgba(var(--shadowcolor), .1),
+					-6.3em 0 .14em rgba(var(--shadowcolor), .1),
+					-7em 0 .14em rgba(var(--shadowcolor), .1),
+					-7.7em 0 .14em rgba(var(--shadowcolor), .1),
+					-8.4em 0 .14em rgba(var(--shadowcolor), .1),
+					-9.1em 0 .14em rgba(var(--shadowcolor), .1),
+					-9.8em 0 .14em rgba(var(--shadowcolor), .1),
+					-10.5em 0 .14em rgba(var(--shadowcolor), .1),
+					-11.2em 0 .14em rgba(var(--shadowcolor), .1),
+					-11.9em 0 .14em rgba(var(--shadowcolor), .1),
+					-12.6em 0 .14em rgba(var(--shadowcolor), .1),
+					-13.3em 0 .14em rgba(var(--shadowcolor), .1),
+					-14em 0 .14em rgba(var(--shadowcolor), .1),
+					-14.7em 0 .14em rgba(var(--shadowcolor), .1),
+					-15.4em 0 .14em rgba(var(--shadowcolor), .1),
+					-16.1em 0 .14em rgba(var(--shadowcolor), .1);
+				}
+			100% {
+				text-shadow:
+					0 0 .1em rgba(var(--shadowcolor), .4);
+				}
+			}
+
+#hero .right-shadow {
+	animation-name: shadow-animation-right;
+	animation-direction: normal;
+	animation-duration: 5s;
+	animation-iteration-count: infinite;
+}
+
+			@keyframes shadow-animation-right {
+			0% {
+				text-shadow: 
+					0 0 .1em rgba(var(--shadowcolor), .4);
+			}
+			50% {
+				text-shadow: 
+					.7em 0 .1em rgba(var(--shadowcolor), .4),
+					1.4em 0 .12em rgba(var(--shadowcolor), .3),
+					2.1em 0 .13em rgba(var(--shadowcolor), .2),
+					2.8em 0 .14em rgba(var(--shadowcolor), .1),
+					3.5em 0 .14em rgba(var(--shadowcolor), .1),
+					4.2em 0 .14em rgba(var(--shadowcolor), .1),
+					4.9em 0 .14em rgba(var(--shadowcolor), .1),
+					5.6em 0 .14em rgba(var(--shadowcolor), .1),
+					6.3em 0 .14em rgba(var(--shadowcolor), .1),
+					7em 0 .14em rgba(var(--shadowcolor), .1),
+					7.7em 0 .14em rgba(var(--shadowcolor), .1),
+					8.4em 0 .14em rgba(var(--shadowcolor), .1),
+					9.1em 0 .14em rgba(var(--shadowcolor), .1),
+					9.8em 0 .14em rgba(var(--shadowcolor), .1),
+					10.5em 0 .14em rgba(var(--shadowcolor), .1),
+					11.2em 0 .14em rgba(var(--shadowcolor), .1),
+					11.9em 0 .14em rgba(var(--shadowcolor), .1),
+					12.6em 0 .14em rgba(var(--shadowcolor), .1),
+					13.3em 0 .14em rgba(var(--shadowcolor), .1),
+					14em 0 .14em rgba(var(--shadowcolor), .1),
+					14.7em 0 .14em rgba(var(--shadowcolor), .1),
+					15.4em 0 .14em rgba(var(--shadowcolor), .1),
+					16.1em 0 .14em rgba(var(--shadowcolor), .1);
+				}
+			100% {
+				text-shadow:
+					0 0 .1em rgba(var(--shadowcolor), .4);
+				}
+			}
+
+#hero .top-shadow {
+	animation-name: shadow-animation-top;
+	animation-direction: normal;
+	animation-duration: 5s;
+	animation-iteration-count: infinite;
+}
+
+			@keyframes shadow-animation-top {
+				0% {
+					text-shadow: 
+						0 0 .1em rgba(var(--shadowcolor), .4);
+				}
+				50% {
+					text-shadow: 
+						0 -.7em .1em rgba(var(--shadowcolor), .4),
+						0 -1.4em .12em rgba(var(--shadowcolor), .3),
+						0 -2.1em .13em rgba(var(--shadowcolor), .2),
+						0 -2.8em .14em rgba(var(--shadowcolor), .1),
+						0 -3.5em .14em rgba(var(--shadowcolor), .1),
+						0 -4.2em .14em rgba(var(--shadowcolor), .1),
+						0 -4.9em .14em rgba(var(--shadowcolor), .1),
+						0 -5.6em .14em rgba(var(--shadowcolor), .1);
+				}
+				100% {
+					text-shadow:
+						0 0 .1em rgba(var(--shadowcolor), .4);
+				}
+			}
+
+#hero .bottom-shadow {
+	animation-name: shadow-animation-bottom;
+	animation-direction: normal;
+	animation-duration: 5s;
+	animation-iteration-count: infinite;
+}
+
+			@keyframes shadow-animation-bottom {
+			0% {
+				text-shadow: 
+					0 0 .1em rgba(var(--shadowcolor), .4);
+				}
+			50% {
+				text-shadow: 
+					0 .7em .1em rgba(var(--shadowcolor), .4),
+					0 1.4em .12em rgba(var(--shadowcolor), .3),
+					0 2.1em .13em rgba(var(--shadowcolor), .2),
+					0 2.8em .14em rgba(var(--shadowcolor), .1),
+					0 3.5em .14em rgba(var(--shadowcolor), .1),
+					0 4.2em .14em rgba(var(--shadowcolor), .1),
+					0 4.9em .14em rgba(var(--shadowcolor), .1),
+					0 5.6em .14em rgba(var(--shadowcolor), .1);	
+				}
+			100% {
+				text-shadow:
+					0 0 .1em rgba(var(--shadowcolor), .4);
+				}
+			}
+
+#hero .left-shadow,
+#hero .right-shadow,
+#hero .top-shadow,
+#hero .bottom-shadow {
+	animation-play-state: running;
+}
+
+#hero #animation-button:checked + label .left-shadow,
+#hero #animation-button:checked + label .right-shadow,
+#hero #animation-button:checked + label .top-shadow,
+#hero #animation-button:checked + label .bottom-shadow {
+	animation-play-state: paused;
+}
+
+#hero #animation-button:checked + label h1 { 
+	/* opacity: .5;  */
+}
+
+
+
+
+
+
+
+/* ---------------- Media Queries -----------------*/
+
+@media (width <= 330px) {
+	:root {
+
+	}
+}
+
+
+@media (width <= 480px) {
+	:root {
+		--fontsizep: 1rem;
+		--fontsizeh1: 3.8rem;
+		--fontsizeh2: 2rem;
+		--fontsizequote: 1.5rem;
+		--lineheightp: 1.5em;
+		--lineheightquote: 1.2em;
+		--paddinginline: 1.25rem;
+		--marginblock: 4rem;
+		--inlinemax: 64ch;
+	}
+
+	/* .left-shadow {
+		down
+		text-shadow: 
+			-2.1em .7em .14em rgba(var(--shadowcolor), .1),
+			-2.1em 1.4em .14em rgba(var(--shadowcolor), .1),
+			-2.1em 2.1em .14em rgba(var(--shadowcolor), .1),
+			-2.1em 2.8em .14em rgba(var(--shadowcolor), .1),
+			-2.1em 3.5em .14em rgba(var(--shadowcolor), .1),
+			-2.1em 4.2em .14em rgba(var(--shadowcolor), .1),
+			-2.1em 4.9em .14em rgba(var(--shadowcolor), .1),	
+			-2.1em 5.6em .14em rgba(var(--shadowcolor), .1),	
+			-2.1em 6.3em .14em rgba(var(--shadowcolor), .1),	
+			-2.1em 7em .14em rgba(var(--shadowcolor), .1),	
+			-2.1em 7.7em .14em rgba(var(--shadowcolor), .1);	
+
+	}	 */
+}
+
+@media (481px <= width <= 800px) {
+	:root {
+		--fontsizep: 1.2rem;
+		--fontsizeh1: 5rem;
+		--fontsizeh2: 2.1rem;
+		--fontsizequote: 1.45rem;
+		--paddinginline: 2rem;
+		--marginblock: 5rem;
+	}
+	
+	aside {
+		font-size: var(--fontsizep);
+		line-height: calc(var(--lineheightp) * .7);
+	}
+}
+
+
+@media (width <= 1000px) {
+	@keyframes shadow-animation-left {
+		0% {
+			text-shadow: 
+				0 0 .1em rgba(var(--shadowcolor), .4);
+		}
+		50% {
+			text-shadow: 
+				0 .7em .1em rgba(var(--shadowcolor), .4),
+				0 1.4em .12em rgba(var(--shadowcolor), .3),
+				0 2.1em .13em rgba(var(--shadowcolor), .2),
+				0 2.8em .14em rgba(var(--shadowcolor), .1),
+				0 3.5em .14em rgba(var(--shadowcolor), .1),
+				0 4.2em .14em rgba(var(--shadowcolor), .1),
+				0 4.9em .14em rgba(var(--shadowcolor), .1),
+				0 5.6em .14em rgba(var(--shadowcolor), .1);
+		}
+	100% {
+		text-shadow:
+			0 0 .1em rgba(var(--shadowcolor), .4);
+		}
+	}
+
+	@keyframes shadow-animation-right {
+		0% {
+			text-shadow: 
+				0 0 .1em rgba(var(--shadowcolor), .4);
+		}
+		50% {
+			text-shadow: 
+				0 -.7em .1em rgba(var(--shadowcolor), .4),
+				0 -1.4em .12em rgba(var(--shadowcolor), .3),
+				0 -2.1em .13em rgba(var(--shadowcolor), .2),
+				0 -2.8em .14em rgba(var(--shadowcolor), .1),
+				0 -3.5em .14em rgba(var(--shadowcolor), .1),
+				0 -4.2em .14em rgba(var(--shadowcolor), .1),
+				0 -4.9em .14em rgba(var(--shadowcolor), .1),
+				0 -5.6em .14em rgba(var(--shadowcolor), .1);
+		}
+		100% {
+			text-shadow:
+				0 0 .1em rgba(var(--shadowcolor), .4);
+		}
+	}	
+
+	.quote-left {
+		text-align: end;
+	}
+
+	.quote-right {
+		text-align: start;
+	}	
+}
+
+@media (1200px <= width) {
+
+}
+
+@media print {
+	:root {
+		background-color: white;
+		color: black;
+		--fontsizep: 1rem; 
+	}
+
+	.left-shadow {
+		color: black;
+		text-shadow:
+			/* left */
+			-.7em 0 .1em rgba(var(--shadowcolor), .4),
+			-1.4em 0 .12em rgba(var(--shadowcolor), .3),
+			-2.1em 0 .13em rgba(var(--shadowcolor), .2),
+			-2.8em 0 .14em rgba(var(--shadowcolor), .1),
+			-3.5em 0 .14em rgba(var(--shadowcolor), .1),
+			-4.2em 0 .14em rgba(var(--shadowcolor), .1),
+			-4.9em 0 .14em rgba(var(--shadowcolor), .1),
+			-5.6em 0 .14em rgba(var(--shadowcolor), .1),
+			-6.3em 0 .14em rgba(var(--shadowcolor), .1),
+			-7em 0 .14em rgba(var(--shadowcolor), .1),
+			-7.7em 0 .14em rgba(var(--shadowcolor), .1),
+			-8.4em 0 .14em rgba(var(--shadowcolor), .1),
+			-9.1em 0 .14em rgba(var(--shadowcolor), .1),
+			-9.8em 0 .14em rgba(var(--shadowcolor), .1),
+			-10.5em 0 .14em rgba(var(--shadowcolor), .1),
+			-11.2em 0 .14em rgba(var(--shadowcolor), .1),
+			-11.9em 0 .14em rgba(var(--shadowcolor), .1),
+			-12.6em 0 .14em rgba(var(--shadowcolor), .1),
+			-13.3em 0 .14em rgba(var(--shadowcolor), .1),
+			-14em 0 .14em rgba(var(--shadowcolor), .1),
+			-14.7em 0 .14em rgba(var(--shadowcolor), .1),
+			-15.4em 0 .14em rgba(var(--shadowcolor), .1),
+			-16.1em 0 .14em rgba(var(--shadowcolor), .1),
+			-16.8em 0 .14em rgba(var(--shadowcolor), .1);
+	}
+
+	.right-shadow {
+		color: black;
+		text-shadow:
+			/* right */
+			0.7em 0 .1em rgba(var(--shadowcolor), .4),
+			1.4em 0 .12em rgba(var(--shadowcolor), .3),
+			2.1em 0 .13em rgba(var(--shadowcolor), .2),
+			2.8em 0 .14em rgba(var(--shadowcolor), .1),
+			3.5em 0 .14em rgba(var(--shadowcolor), .1),
+			4.2em 0 .14em rgba(var(--shadowcolor), .1),
+			4.9em 0 .14em rgba(var(--shadowcolor), .1),
+			5.6em 0 .14em rgba(var(--shadowcolor), .1),
 			6.3em 0 .14em rgba(var(--shadowcolor), .1),
 			7em 0 .14em rgba(var(--shadowcolor), .1),
 			7.7em 0 .14em rgba(var(--shadowcolor), .1),
@@ -333,92 +843,36 @@ footer {
 			15.4em 0 .14em rgba(var(--shadowcolor), .1),
 			16.1em 0 .14em rgba(var(--shadowcolor), .1),
 			16.8em 0 .14em rgba(var(--shadowcolor), .1);
-}
-
-.quote-left {
-	color: black;
-	text-shadow:
-		-.4em 0 .05em rgba(var(--shadowcolor), .5),
-		-.8em 0 .06em rgba(var(--shadowcolor), .4),
-		-1.2em 0 .07em rgba(var(--shadowcolor), .3),
-		-1.6em 0 .08em rgba(var(--shadowcolor), .2);
-}
-
-.quote-right {
-	color: black;
-	text-shadow:
-		.4em 0 .05em rgba(var(--shadowcolor), .5),
-		.8em 0 .06em rgba(var(--shadowcolor), .4),
-		1.2em 0 .07em rgba(var(--shadowcolor), .3),
-		1.6em 0 .08em rgba(var(--shadowcolor), .2);
-}
-
-/* ------------ Animation ----------*/
-
-
-
-/* ------------ Media Queries ----------*/
-
-@media (width <= 480px) {
-	:root {
-		--fontsizep: 1rem;
-		--fontsizeh1: 3.8rem;
-		--fontsizeh2: 2rem;
-		--fontsizequote: 1.5rem;
-		--lineheightp: 1.5em;
-		--lineheightquote: 1.2em;
-		--paddinginline: 1.25rem;
-		--paddingblock: 4rem;
-		--inlinemax: 64ch;
 	}
 
-	#hero {
-		padding-block: calc(var(--paddingblock) * 3);
-		overflow-y: hidden;
-	}
-
-	.quote-right {
-		margin-block-start: calc(var(--pmargin) / 2);
-		margin-block-end: calc(var(--pmargin) * 3);
-	}
-}
-
-@media (481px <= width <= 700px) {
-	:root {
-		--fontsizep: 1.2rem;
-		--fontsizeh1: 5rem;
-		--fontsizeh2: 2.1rem;
-		--fontsizequote: 1.45rem;
-		--paddinginline: 2rem;
-		--paddingblock: 5rem;
-	}
-	
-	aside {
-		font-size: var(--fontsizep);
-		line-height: calc(var(--lineheightp) * .7);
-	}
-}
-
-
-@media (width <= 950px) {
-	h1 .left-shadow {
-		text-shadow:
-			0 .7em .1em rgba(var(--shadowcolor), .4),
-			0 1.4em .12em rgba(var(--shadowcolor), .3),
-			0 2.1em .13em rgba(var(--shadowcolor), .2),
-			0 2.8em .14em rgba(var(--shadowcolor), .1);
-	}
-	
-	h1 .right-shadow {
-		text-shadow:
+	.top-shadow {
+		color: black; 
+			text-shadow:
 			0 -.7em .1em rgba(var(--shadowcolor), .4),
 			0 -1.4em .12em rgba(var(--shadowcolor), .3),
 			0 -2.1em .13em rgba(var(--shadowcolor), .2),
-			0 -2.8em .14em rgba(var(--shadowcolor), .1);
+			0 -2.8em .14em rgba(var(--shadowcolor), .1),
+			0 -3.5em .14em rgba(var(--shadowcolor), .1),
+			0 -4.2em .14em rgba(var(--shadowcolor), .1),
+			0 -4.9em .14em rgba(var(--shadowcolor), .1),
+			0 -5.6em .14em rgba(var(--shadowcolor), .1);
+	}
+
+	.bottom-shadow {
+		color: black; 
+			text-shadow:
+				0 .7em .1em rgba(var(--shadowcolor), .4),
+				0 1.4em .12em rgba(var(--shadowcolor), .3),
+				0 2.1em .13em rgba(var(--shadowcolor), .2),
+				0 2.8em .14em rgba(var(--shadowcolor), .1),
+				0 3.5em .14em rgba(var(--shadowcolor), .1),
+				0 4.2em .14em rgba(var(--shadowcolor), .1),
+				0 4.9em .14em rgba(var(--shadowcolor), .1),
+				0 5.6em .14em rgba(var(--shadowcolor), .1);
 	}
 
 	.quote-left {
-		text-align: end;
+		color: black;
 		text-shadow:
 			-.4em 0 .05em rgba(var(--shadowcolor), .5),
 			-.8em 0 .06em rgba(var(--shadowcolor), .4),
@@ -431,7 +885,7 @@ footer {
 	}
 
 	.quote-right {
-		text-align: start;
+		color: black;
 		text-shadow:
 			.4em 0 .05em rgba(var(--shadowcolor), .5),
 			.8em 0 .06em rgba(var(--shadowcolor), .4),
@@ -441,39 +895,45 @@ footer {
 			2.4em 0 .08em rgba(var(--shadowcolor), .2),
 			2.8em 0 .08em rgba(var(--shadowcolor), .2),
 			3.2em 0 .08em rgba(var(--shadowcolor), .2);
-		margin-block-start: calc(var(--pmargin) * 4);
-	}	
-}
-
-
-@media (700px <= width <= 1200px) {
-	:root {
-		--fontsizeh1: 6.5rem;
-		--fontsizeh2: 2.5rem;
-		--fontsizequote: 2rem;
-		--lineheightquote: 1.2em;
-		--paddinginline: 4rem;
-		--paddingblock: 5rem;
 	}
 
-	.quote-right {
-		margin-block-start: calc(var(--pmargin) * 4.5);
-	}
-}
-
-@media (1200px <= width) {
-
-}
-
-@media print {
-	:root {
-		background-color: white;
-		color: black;
-	}
-}
-
-/* @media (prefers-reduced-motion: reduce) {
-	h1 .right-shadow::after { 
+	#hero .left-shadow, 
+	#hero .right-shadow,
+	#hero .top-shadow,
+	#hero .bottom-shadow { 
 		animation: none;
 	}
-} */
+
+	main {
+		padding-inline: calc(var(--paddinginline) * 3);
+	}
+
+	article { 
+		break-before: page;
+		page-break-before: always;
+	}
+
+	article:first-of-type {
+		break-before: auto;
+		page-break-before: auto;
+	}
+
+	.quote-left { 
+		text-align: start;
+	}
+
+	.quote-right { 
+		text-align: end; 
+	}
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+	#hero .left-shadow, 
+	#hero .right-shadow,
+	#hero .top-shadow,
+	#hero .bottom-shadow { 
+		animation: none;
+		text-shadow: 0 0 0 rgba(var(--shadowcolor), .4);
+	}
+}

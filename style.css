@@ -1,9 +1,9 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Dokdo&family=Freckle+Face&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Luckiest+Guy&family=Rubik+Glitch&family=Rubik:ital,wght@0,300..900;1,300..900&family=Stick&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gasoek+One&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Michroma&family=Rammetto+One&family=Titan+One&display=swap');
 
 :root {
 	--fontp: "Libre Franklin", sans-serif;
-	--fontheader: "Libre Franklin", sans-serif;
+	--fontheader: "Rammetto One", sans-serif;
 
 	--fontsizeh1: 10rem;
 	--letterspacingh1: .3em;
@@ -33,7 +33,7 @@
 	
 	--backgroundcolor: 255, 255, 255;
 	--shadowcolor: 0, 0, 0;
-	--accentcolor: #FFA100;
+	--accentcolor: #c8e00c;
 	--bordercolor: lightgray;
 
 	scroll-behavior: smooth;
@@ -144,6 +144,7 @@ h2 {
 }
 
 p {
+	font-family: var(--fontp);
 	margin-block: var(--paddingmargin);
 	line-height: var(--lineheightp);
 	color: rgba(var(--shadowcolor));
@@ -161,6 +162,7 @@ em {
 }
 
 .links {
+	font-family: var(--fontheader);
 	color: var(--accentcolor);
 	font-weight: 700;
 	text-shadow: 0 .8em .2em rgba(var(--shadowcolor), .3);
@@ -281,6 +283,7 @@ ol li::marker {
 /* ------------------Footer-------------------- */
 
 footer {
+	font-family: var(--fontheader);
 	color: rgba(var(--shadowcolor));
 	text-align: center;
 	margin-block: var(--marginblock);

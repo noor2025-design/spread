@@ -1,32 +1,48 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dokdo&family=Freckle+Face&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Luckiest+Guy&family=Rubik+Glitch&family=Rubik:ital,wght@0,300..900;1,300..900&family=Stick&display=swap');
 
 :root {
+	--fontp: "Libre Franklin", sans-serif;
+	--fontheader: "Libre Franklin", sans-serif;
+
+	--fontsizeh1: 10rem;
+	--letterspacingh1: .3em;
+
+	--fontsizeh2: 4rem;
+	--lineheighth2: 1em;
+	--letterspacingh2: .05em;
+
+	--fontsizequotemark: 30rem;
+
+	--fontsizeblockquote: 3rem;
+	--lineheightblockquote: .9em;
+
 	--fontsizep: 1.3rem;
 	--lineheightp: 1.7em;
-	--lineheighth2: 1em;
-	--fontfamily: "Libre Franklin", sans-serif;
-	--fontsizeh1: 10rem;
-	--fontsizeh2: 4rem;
-	--fontsizequote: 3rem;
-	--lineheightquote: 1.1em;
 
-	--pmargin: 3rem;
+	--fontsizelinks: 2rem;
+	
+	--fontsizefooter: 2.5rem;
+
 	--inlinemax: 60ch; 
 	--quotemax: 42ch;
-	--paddinginline: 6rem;
+	--paddingmargin: 3rem;
+	--paddinginline: 1rem;
 	--marginblock: 6rem;
 	--gap: 1.5rem;
 	
-	background-color: white;
+	--backgroundcolor: 255, 255, 255;
 	--shadowcolor: 0, 0, 0;
+	--accentcolor: #FFA100;
+	--bordercolor: lightgray;
 
 	scroll-behavior: smooth;
 
 }
 
 body {
-	font-family: var(--fontfamily);
+	font-family: var(--fontp);
+	background-color: rgba(var(--backgroundcolor));
 }
 
 
@@ -60,10 +76,13 @@ body {
 }
 
 h1 {
+	font-family: var(--fontheader);
+	/* letter-spacing: var(--letterspacingh1); */
 	text-align: center;
 	font-size: var(--fontsizeh1);
 	font-weight: 900;
 	cursor: pointer;
+	color: var(--accentcolor);
 }
 
 #written-by, #designed-by {
@@ -93,42 +112,42 @@ main {
 	font-size: var(--fontsizep);
 	inline-size: min(100%, var(--inlinemax));
 	margin: auto;
+	padding-inline: var(--paddinginline);
 }
 
-article {
-	margin-block-end: calc(var(--marginblock) * 2);
-}
 /* Why can't I just use margin-block for this or is grid/flex preferred if it's just aligning paragraphs in one column? */
 
-article > * {
-	/* margin-block-end: calc(var(--pmargin) * 1.5);  */
-	/* (space between header, section, aside) */
-}
-
-article > header {
+article >  header {
 	position: sticky;
 	top: 0;
 	z-index: 2;
-	background: white;
-	padding-block: calc(var(--pmargin) / 2);
+	background-color: rgba(var(--backgroundcolor));
+	padding-block: calc(var(--paddingmargin) / 2);
 	border-bottom-style: solid;
 	border-bottom-width: .001rem;
-	border-bottom-color: lightgray;
+	border-bottom-color: var(--bordercolor);
 	/* filter: drop-shadow(0 .5rem 2rem rgb(0, 0, 0, .1)); */
 }
 
 h2 {
+	font-family: var(--fontheader);
 	text-align: center;
 	font-size: var(--fontsizeh2);
-	font-weight: 700;
+	/* letter-spacing: var(--letterspacingh2); */
+	font-weight: 800;
 	text-wrap: balance;
 	line-height: var(--lineheighth2);
+	color: var(--accentcolor);
+}
+
+.mq-break {
+	display: inline;
 }
 
 p {
-	margin-block: var(--pmargin);
+	margin-block: var(--paddingmargin);
 	line-height: var(--lineheightp);
-	color: var(--shadowcolor);
+	color: rgba(var(--shadowcolor));
 	text-align: left;
 	font-size: var(--fontsizep);
 	hyphens: auto;
@@ -143,18 +162,15 @@ em {
 }
 
 .links {
+	color: var(--accentcolor);
 	font-weight: 700;
-	text-shadow: 0 .5em .2em rgba(var(--shadowcolor), .3);
+	text-shadow: 0 .8em .2em rgba(var(--shadowcolor), .3);
 }
 
 .links:hover {
 	font-size: calc(var(--fontsizep) * 1.5);
 }
 
-.links:visited {
-	/* color: red; */
-	color: rgba(var(--shadowcolor), .5);
-}
 
 
 
@@ -170,26 +186,28 @@ em {
 .blockquote-section {
 	display: flex;
 	flex-direction: column;
-	gap: 0;
+	gap: var(--gap);
 	margin-block: var(--marginblock);
 	/* background-color: red; DELETE LATER, JUST FOR FRAMING REFERENCE  */
-	padding-block: 0;
+	/* padding-block: 0; */
 }
 
 .blockquote-section blockquote {
-	font-size: var(--fontsizequote);
+	color: rgba(var(--shadowcolor));
+	font-size: var(--fontsizeblockquote);
 	line-height: var(--lineheightquote);
 	text-align: center;
 	font-weight: 600;
 	inline-size: min(100%, var(--quotemax));
 	margin-inline: auto;
-	padding: 0;
-	margin-block: 0;
+	/* padding: 0;
+	margin-block: 0; */
 }
 
 .quote-left, 
 .quote-right {
-	font-size: calc(var(--fontsizeh1) * 3);
+	color: var(--accentcolor);
+	font-size: var(--fontsizequotemark);
 	line-height: 1;
 	/* background-color: blue; DELETE LATER, JUST FOR FRAMING REFERENCE  */
 }
@@ -233,11 +251,13 @@ em {
 /* ------------------Footnotes-------------------- */
 
 aside {
+	color: rgba(var(--shadowcolor));
 	font-size: calc(var(--fontsizep) * .9);
+	padding-block-end: calc(var(--marginblock) * 2);
 }
 
 sup {
-	color: red;
+	color: var(--accentcolor);
 	font-size: calc(var(--fontsizep) / 2);
 	vertical-align: top;
 }
@@ -250,7 +270,7 @@ ol {
 }
 
 ol li::marker {
-	color: red;
+	color: var(--accentcolor);
 }
 
 
@@ -262,14 +282,46 @@ ol li::marker {
 /* ------------------Footer-------------------- */
 
 footer {
+	color: rgba(var(--shadowcolor));
 	text-align: center;
-	margin-block-end: calc(var(--marginblock) * 2);
-	font-size: calc(var(--fontsizep) * 1.5);
+	margin-block: var(--marginblock);
+	font-size: var(--fontsizefooter);
 	font-weight: 700;
 }
 
-footer .left-shadow {
-	color: black;
+footer ul {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	text-wrap: balance;
+	text-align: center;
+}
+
+footer ul li:nth-child(3) {
+	color: var(--accentcolor);
+}
+
+/* footer li:hover {
+	color: var(--accentcolor);
+} */
+
+
+
+
+
+
+/* ------------------Shadows-------------------- */
+
+/* Surely there has to be an easier way to write this??? */
+
+.left-shadow, 
+.right-shadow, 
+.top-shadow, 
+.bottom-shadow {
+	color: rgba(var(--shadowcolor));
+}
+
+header .left-shadow {
 	text-shadow:
 		/* left */
 		-.7em 0 .1em rgba(var(--shadowcolor), .4),
@@ -298,89 +350,7 @@ footer .left-shadow {
 		-16.8em 0 .14em rgba(var(--shadowcolor), .1);
 }
 
-footer .right-shadow {
-	color: black;
-	text-shadow:
-		/* right */
-		0.7em 0 .1em rgba(var(--shadowcolor), .4),
-		1.4em 0 .12em rgba(var(--shadowcolor), .3),
-		2.1em 0 .13em rgba(var(--shadowcolor), .2),
-		2.8em 0 .14em rgba(var(--shadowcolor), .1),
-		3.5em 0 .14em rgba(var(--shadowcolor), .1),
-		4.2em 0 .14em rgba(var(--shadowcolor), .1),
-		4.9em 0 .14em rgba(var(--shadowcolor), .1),
-		5.6em 0 .14em rgba(var(--shadowcolor), .1),
-		6.3em 0 .14em rgba(var(--shadowcolor), .1),
-		7em 0 .14em rgba(var(--shadowcolor), .1),
-		7.7em 0 .14em rgba(var(--shadowcolor), .1),
-		8.4em 0 .14em rgba(var(--shadowcolor), .1),
-		9.1em 0 .14em rgba(var(--shadowcolor), .1),
-		9.8em 0 .14em rgba(var(--shadowcolor), .1),
-		10.5em 0 .14em rgba(var(--shadowcolor), .1),
-		11.2em 0 .14em rgba(var(--shadowcolor), .1),
-		11.9em 0 .14em rgba(var(--shadowcolor), .1),
-		12.6em 0 .14em rgba(var(--shadowcolor), .1),
-		13.3em 0 .14em rgba(var(--shadowcolor), .1),
-		14em 0 .14em rgba(var(--shadowcolor), .1),
-		14.7em 0 .14em rgba(var(--shadowcolor), .1),
-		15.4em 0 .14em rgba(var(--shadowcolor), .1),
-		16.1em 0 .14em rgba(var(--shadowcolor), .1),
-		16.8em 0 .14em rgba(var(--shadowcolor), .1);
-}
-
-
-
-
-
-
-
-
-
-/* ------------------Shadows-------------------- */
-
-/* Surely there has to be an easier way to write this??? */
-
-header .left-shadow {
-	color: black;
-	text-shadow:
-		/* left */
-		-.7em 0 .1em rgba(var(--shadowcolor), .4),
-		-1.4em 0 .12em rgba(var(--shadowcolor), .3),
-		-2.1em 0 .13em rgba(var(--shadowcolor), .2),
-		-2.8em 0 .14em rgba(var(--shadowcolor), .1),
-		-3.5em 0 .14em rgba(var(--shadowcolor), .1),
-		-4.2em 0 .14em rgba(var(--shadowcolor), .1),
-		-4.9em 0 .14em rgba(var(--shadowcolor), .1),
-		-5.6em 0 .14em rgba(var(--shadowcolor), .1),
-		-6.3em 0 .14em rgba(var(--shadowcolor), .1),
-		-7em 0 .14em rgba(var(--shadowcolor), .1),
-		-7.7em 0 .14em rgba(var(--shadowcolor), .1),
-		-8.4em 0 .14em rgba(var(--shadowcolor), .1),
-		-9.1em 0 .14em rgba(var(--shadowcolor), .1),
-		-9.8em 0 .14em rgba(var(--shadowcolor), .1),
-		-10.5em 0 .14em rgba(var(--shadowcolor), .1),
-		-11.2em 0 .14em rgba(var(--shadowcolor), .1),
-		-11.9em 0 .14em rgba(var(--shadowcolor), .1),
-		-12.6em 0 .14em rgba(var(--shadowcolor), .1),
-		-13.3em 0 .14em rgba(var(--shadowcolor), .1),
-		-14em 0 .14em rgba(var(--shadowcolor), .1),
-		-14.7em 0 .14em rgba(var(--shadowcolor), .1),
-		-15.4em 0 .14em rgba(var(--shadowcolor), .1),
-		-16.1em 0 .14em rgba(var(--shadowcolor), .1),
-		-16.8em 0 .14em rgba(var(--shadowcolor), .1),
-
-		/* down */
-		-4.9em .7em .14em rgba(var(--shadowcolor), .1),
-		-4.9em 1.4em .14em rgba(var(--shadowcolor), .1),
-		-4.9em 2.1em .14em rgba(var(--shadowcolor), .1),
-		-4.9em 2.8em .14em rgba(var(--shadowcolor), .1),
-		-4.9em 3.5em .14em rgba(var(--shadowcolor), .1),
-		-4.9em 4.2em .14em rgba(var(--shadowcolor), .1),
-		-4.9em 4.9em .14em rgba(var(--shadowcolor), .1);
-}
-
 header .right-shadow {
-	color: black;
 	text-shadow:
 		/* right */
 		0.7em 0 .1em rgba(var(--shadowcolor), .4),
@@ -406,21 +376,11 @@ header .right-shadow {
 		14.7em 0 .14em rgba(var(--shadowcolor), .1),
 		15.4em 0 .14em rgba(var(--shadowcolor), .1),
 		16.1em 0 .14em rgba(var(--shadowcolor), .1),
-		16.8em 0 .14em rgba(var(--shadowcolor), .1),
-
-		/* down */
-		4.9em .7em .14em rgba(var(--shadowcolor), .1),
-		4.9em 1.4em .14em rgba(var(--shadowcolor), .1),
-		4.9em 2.1em .14em rgba(var(--shadowcolor), .1),
-		4.9em 2.8em .14em rgba(var(--shadowcolor), .1),
-		4.9em 3.5em .14em rgba(var(--shadowcolor), .1),
-		4.9em 4.2em .14em rgba(var(--shadowcolor), .1),
-		4.9em 4.9em .14em rgba(var(--shadowcolor), .1);			
+		16.8em 0 .14em rgba(var(--shadowcolor), .1);		
 }
 
 .top-shadow {
-	color: black; 
-		text-shadow:
+	text-shadow:
 		0 -.7em .1em rgba(var(--shadowcolor), .4),
 		0 -1.4em .12em rgba(var(--shadowcolor), .3),
 		0 -2.1em .13em rgba(var(--shadowcolor), .2),
@@ -448,20 +408,18 @@ header .right-shadow {
 }
 
 .bottom-shadow {
-	color: black; 
-		text-shadow:
-			0 .7em .1em rgba(var(--shadowcolor), .4),
-			0 1.4em .12em rgba(var(--shadowcolor), .3),
-			0 2.1em .13em rgba(var(--shadowcolor), .2),
-			0 2.8em .14em rgba(var(--shadowcolor), .1),
-			0 3.5em .14em rgba(var(--shadowcolor), .1),
-			0 4.2em .14em rgba(var(--shadowcolor), .1),
-			0 4.9em .14em rgba(var(--shadowcolor), .1),
-			0 5.6em .14em rgba(var(--shadowcolor), .1),
+	text-shadow:
+		0 .7em .1em rgba(var(--shadowcolor), .4),
+		0 1.4em .12em rgba(var(--shadowcolor), .3),
+		0 2.1em .13em rgba(var(--shadowcolor), .2),
+		0 2.8em .14em rgba(var(--shadowcolor), .1),
+		0 3.5em .14em rgba(var(--shadowcolor), .1),
+		0 4.2em .14em rgba(var(--shadowcolor), .1),
+		0 4.9em .14em rgba(var(--shadowcolor), .1),
+		0 5.6em .14em rgba(var(--shadowcolor), .1),
 }
 
 .quote-left {
-	color: black;
 	text-shadow:
 		-.4em 0 .05em rgba(var(--shadowcolor), .5),
 		-.8em 0 .06em rgba(var(--shadowcolor), .4),
@@ -474,7 +432,6 @@ header .right-shadow {
 }
 
 .quote-right {
-	color: black;
 	text-shadow:
 		.4em 0 .05em rgba(var(--shadowcolor), .5),
 		.8em 0 .06em rgba(var(--shadowcolor), .4),
@@ -486,12 +443,38 @@ header .right-shadow {
 		3.2em 0 .08em rgba(var(--shadowcolor), .2);
 }
 
+footer .left-shadow {
+	text-shadow:
+		/* left */
+		-.7em 0 .1em rgba(var(--shadowcolor), .3),
+		-1.4em 0 .12em rgba(var(--shadowcolor), .2),
+		-2.1em 0 .13em rgba(var(--shadowcolor), .1),
+		-2.8em 0 .14em rgba(var(--shadowcolor), .1),
+		-3.5em 0 .14em rgba(var(--shadowcolor), .1),
+		-4.2em 0 .14em rgba(var(--shadowcolor), .1),
+		-4.9em 0 .14em rgba(var(--shadowcolor), .1),
+		-5.6em 0 .14em rgba(var(--shadowcolor), .1);
+}
+
+footer .right-shadow {
+	text-shadow:
+		/* right */
+		0.7em 0 .1em rgba(var(--shadowcolor), .3),
+		1.4em 0 .12em rgba(var(--shadowcolor), .2),
+		2.1em 0 .13em rgba(var(--shadowcolor), .1),
+		2.8em 0 .14em rgba(var(--shadowcolor), .1),
+		3.5em 0 .14em rgba(var(--shadowcolor), .1),
+		4.2em 0 .14em rgba(var(--shadowcolor), .1),
+		4.9em 0 .14em rgba(var(--shadowcolor), .1),
+		5.6em 0 .14em rgba(var(--shadowcolor), .1);
+		/* 6.3em 0 .14em rgba(var(--shadowcolor), .1),
+		7em 0 .14em rgba(var(--shadowcolor), .1); */
+}
 
 
 
 
-
-/* ---------------- Animation -----------------*/
+/* --------------------- Animation ----------------------*/
 
 #hero .left-shadow {
 	animation-name: shadow-animation-left;
@@ -654,10 +637,11 @@ header .right-shadow {
 }
 
 #hero #animation-button:checked + label h1 { 
-	/* opacity: .5;  */
+	/* opacity: .5; */
+	color: rgba(var(--shadowcolor)); 
+	/* font-family: var(--fontheader2);
+	font-weight: 800; */
 }
-
-
 
 
 
@@ -665,51 +649,55 @@ header .right-shadow {
 
 /* ---------------- Media Queries -----------------*/
 
-@media (width <= 330px) {
-	:root {
+/* -----------------Shrink font-sizes, paddinginline----------------- */
 
+@media (width <= 300px) {
+	:root {
+		--fontsizep: .8rem;
+		--fontsizeh1: 3rem;
+		--fontsizeh2: 1.5rem;
+		--fontsizequotemark: 10rem;
+		--gap: 9rem;
+		--fontsizeblockquote: 1rem;
+		--lineheightp: 1.6em;
+		--lineheightquote: 1em;
+		--paddinginline: .8rem;
+		--marginblock: 4rem;
+	}
+
+	footer {
+		--fontsizefooter: 1.5rem;
 	}
 }
 
-
-@media (width <= 480px) {
+@media (301px <= width <= 480px) {
 	:root {
 		--fontsizep: 1rem;
 		--fontsizeh1: 3.8rem;
-		--fontsizeh2: 2rem;
-		--fontsizequote: 1.5rem;
-		--lineheightp: 1.5em;
+		--fontsizeh2: 2.5rem;
+		--fontsizequotemark: 20rem;
+		--gap: 8rem;
+		--fontsizeblockquote: 1.5rem;
+		--lineheightp: 1.7em;
 		--lineheightquote: 1.2em;
-		--paddinginline: 1.25rem;
+		--paddinginline: 1rem;
 		--marginblock: 4rem;
-		--inlinemax: 64ch;
 	}
 
-	/* .left-shadow {
-		down
-		text-shadow: 
-			-2.1em .7em .14em rgba(var(--shadowcolor), .1),
-			-2.1em 1.4em .14em rgba(var(--shadowcolor), .1),
-			-2.1em 2.1em .14em rgba(var(--shadowcolor), .1),
-			-2.1em 2.8em .14em rgba(var(--shadowcolor), .1),
-			-2.1em 3.5em .14em rgba(var(--shadowcolor), .1),
-			-2.1em 4.2em .14em rgba(var(--shadowcolor), .1),
-			-2.1em 4.9em .14em rgba(var(--shadowcolor), .1),	
-			-2.1em 5.6em .14em rgba(var(--shadowcolor), .1),	
-			-2.1em 6.3em .14em rgba(var(--shadowcolor), .1),	
-			-2.1em 7em .14em rgba(var(--shadowcolor), .1),	
-			-2.1em 7.7em .14em rgba(var(--shadowcolor), .1);	
-
-	}	 */
+	footer {
+		--fontsizefooter: 1.4rem;
+	}
 }
 
-@media (481px <= width <= 800px) {
+@media (481px <= width <= 900px) {
 	:root {
 		--fontsizep: 1.2rem;
 		--fontsizeh1: 5rem;
-		--fontsizeh2: 2.1rem;
-		--fontsizequote: 1.45rem;
-		--paddinginline: 2rem;
+		--fontsizeh2: 3rem;
+		--fontsizequotemark: 20rem;
+		--fontsizeblockquote: 1.7rem;
+		--lineheightquote: 1.5em;
+		--paddinginline: 1.5rem;
 		--marginblock: 5rem;
 	}
 	
@@ -717,8 +705,23 @@ header .right-shadow {
 		font-size: var(--fontsizep);
 		line-height: calc(var(--lineheightp) * .7);
 	}
+
+	footer {
+		--fontsizefooter: 1.5rem;
+	}
 }
 
+
+/* -----------------Force "adventures in the skin trade" break----------------- */
+
+@media (width <= 650px) {
+	.mq-break {
+		display: block;
+	}
+}
+
+
+/* -----------------Move #hero left/right animation to top/bottom----------------- */
 
 @media (width <= 1000px) {
 	@keyframes shadow-animation-left {
@@ -764,61 +767,54 @@ header .right-shadow {
 				0 0 .1em rgba(var(--shadowcolor), .4);
 		}
 	}	
-
-	.quote-left {
-		text-align: end;
-	}
-
-	.quote-right {
-		text-align: start;
-	}	
 }
 
-@media (1200px <= width) {
 
-}
 
-@media print {
-	:root {
-		background-color: white;
-		color: black;
-		--fontsizep: 1rem; 
+
+
+/* -----------------Change footer to column----------------- */
+
+@media (width <= 1220px) {
+	footer ul {
+		block-size: 33vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
 	}
 
-	.left-shadow {
-		color: black;
+	footer ul .left-shadow {
 		text-shadow:
-			/* left */
-			-.7em 0 .1em rgba(var(--shadowcolor), .4),
-			-1.4em 0 .12em rgba(var(--shadowcolor), .3),
-			-2.1em 0 .13em rgba(var(--shadowcolor), .2),
-			-2.8em 0 .14em rgba(var(--shadowcolor), .1),
-			-3.5em 0 .14em rgba(var(--shadowcolor), .1),
-			-4.2em 0 .14em rgba(var(--shadowcolor), .1),
-			-4.9em 0 .14em rgba(var(--shadowcolor), .1),
-			-5.6em 0 .14em rgba(var(--shadowcolor), .1),
-			-6.3em 0 .14em rgba(var(--shadowcolor), .1),
-			-7em 0 .14em rgba(var(--shadowcolor), .1),
-			-7.7em 0 .14em rgba(var(--shadowcolor), .1),
-			-8.4em 0 .14em rgba(var(--shadowcolor), .1),
-			-9.1em 0 .14em rgba(var(--shadowcolor), .1),
-			-9.8em 0 .14em rgba(var(--shadowcolor), .1),
-			-10.5em 0 .14em rgba(var(--shadowcolor), .1),
-			-11.2em 0 .14em rgba(var(--shadowcolor), .1),
-			-11.9em 0 .14em rgba(var(--shadowcolor), .1),
-			-12.6em 0 .14em rgba(var(--shadowcolor), .1),
-			-13.3em 0 .14em rgba(var(--shadowcolor), .1),
-			-14em 0 .14em rgba(var(--shadowcolor), .1),
-			-14.7em 0 .14em rgba(var(--shadowcolor), .1),
-			-15.4em 0 .14em rgba(var(--shadowcolor), .1),
-			-16.1em 0 .14em rgba(var(--shadowcolor), .1),
-			-16.8em 0 .14em rgba(var(--shadowcolor), .1);
+		/* left */
+		-.7em 0 .1em rgba(var(--shadowcolor), .4),
+		-1.4em 0 .12em rgba(var(--shadowcolor), .3),
+		-2.1em 0 .13em rgba(var(--shadowcolor), .2),
+		-2.8em 0 .14em rgba(var(--shadowcolor), .1),
+		-3.5em 0 .14em rgba(var(--shadowcolor), .1),
+		-4.2em 0 .14em rgba(var(--shadowcolor), .1),
+		-4.9em 0 .14em rgba(var(--shadowcolor), .1),
+		-5.6em 0 .14em rgba(var(--shadowcolor), .1),
+		-6.3em 0 .14em rgba(var(--shadowcolor), .1),
+		-7em 0 .14em rgba(var(--shadowcolor), .1),
+		-7.7em 0 .14em rgba(var(--shadowcolor), .1),
+		-8.4em 0 .14em rgba(var(--shadowcolor), .1),
+		-9.1em 0 .14em rgba(var(--shadowcolor), .1),
+		-9.8em 0 .14em rgba(var(--shadowcolor), .1),
+		-10.5em 0 .14em rgba(var(--shadowcolor), .1),
+		-11.2em 0 .14em rgba(var(--shadowcolor), .1),
+		-11.9em 0 .14em rgba(var(--shadowcolor), .1),
+		-12.6em 0 .14em rgba(var(--shadowcolor), .1),
+		-13.3em 0 .14em rgba(var(--shadowcolor), .1),
+		-14em 0 .14em rgba(var(--shadowcolor), .1),
+		-14.7em 0 .14em rgba(var(--shadowcolor), .1),
+		-15.4em 0 .14em rgba(var(--shadowcolor), .1),
+		-16.1em 0 .14em rgba(var(--shadowcolor), .1),
+		-16.8em 0 .14em rgba(var(--shadowcolor), .1);
 	}
 
-	.right-shadow {
-		color: black;
+	footer ul .right-shadow {
 		text-shadow:
-			/* right */
+		/* right */
 			0.7em 0 .1em rgba(var(--shadowcolor), .4),
 			1.4em 0 .12em rgba(var(--shadowcolor), .3),
 			2.1em 0 .13em rgba(var(--shadowcolor), .2),
@@ -843,58 +839,40 @@ header .right-shadow {
 			15.4em 0 .14em rgba(var(--shadowcolor), .1),
 			16.1em 0 .14em rgba(var(--shadowcolor), .1),
 			16.8em 0 .14em rgba(var(--shadowcolor), .1);
-	}
+}
+}
 
-	.top-shadow {
-		color: black; 
-			text-shadow:
-			0 -.7em .1em rgba(var(--shadowcolor), .4),
-			0 -1.4em .12em rgba(var(--shadowcolor), .3),
-			0 -2.1em .13em rgba(var(--shadowcolor), .2),
-			0 -2.8em .14em rgba(var(--shadowcolor), .1),
-			0 -3.5em .14em rgba(var(--shadowcolor), .1),
-			0 -4.2em .14em rgba(var(--shadowcolor), .1),
-			0 -4.9em .14em rgba(var(--shadowcolor), .1),
-			0 -5.6em .14em rgba(var(--shadowcolor), .1);
-	}
 
-	.bottom-shadow {
-		color: black; 
-			text-shadow:
-				0 .7em .1em rgba(var(--shadowcolor), .4),
-				0 1.4em .12em rgba(var(--shadowcolor), .3),
-				0 2.1em .13em rgba(var(--shadowcolor), .2),
-				0 2.8em .14em rgba(var(--shadowcolor), .1),
-				0 3.5em .14em rgba(var(--shadowcolor), .1),
-				0 4.2em .14em rgba(var(--shadowcolor), .1),
-				0 4.9em .14em rgba(var(--shadowcolor), .1),
-				0 5.6em .14em rgba(var(--shadowcolor), .1);
-	}
 
+
+
+/* -----------------Move quotemarks in----------------- */
+
+@media (width <= 1600px) {
 	.quote-left {
-		color: black;
-		text-shadow:
-			-.4em 0 .05em rgba(var(--shadowcolor), .5),
-			-.8em 0 .06em rgba(var(--shadowcolor), .4),
-			-1.2em 0 .07em rgba(var(--shadowcolor), .3),
-			-1.6em 0 .08em rgba(var(--shadowcolor), .2),
-			-2em 0 .08em rgba(var(--shadowcolor), .2),
-			-2.4em 0 .08em rgba(var(--shadowcolor), .2),
-			-2.8em 0 .08em rgba(var(--shadowcolor), .2),
-			-3.2em 0 .08em rgba(var(--shadowcolor), .2);
+		text-align: end;
 	}
 
 	.quote-right {
-		color: black;
-		text-shadow:
-			.4em 0 .05em rgba(var(--shadowcolor), .5),
-			.8em 0 .06em rgba(var(--shadowcolor), .4),
-			1.2em 0 .07em rgba(var(--shadowcolor), .3),
-			1.6em 0 .08em rgba(var(--shadowcolor), .2),
-			2em 0 .08em rgba(var(--shadowcolor), .2),
-			2.4em 0 .08em rgba(var(--shadowcolor), .2),
-			2.8em 0 .08em rgba(var(--shadowcolor), .2),
-			3.2em 0 .08em rgba(var(--shadowcolor), .2);
+		text-align: start;
+	}	
+}
+
+
+
+
+
+/* -----------------Print mode----------------- */
+
+@media print {
+	:root {
+		--backgroundcolor: 255, 255, 255;
+		--shadowcolor: 0, 0, 0;
+		--fontsizep: 1rem; 
+	}
+
+	main {
+		padding-inline: calc(var(--paddinginline) * 3);
 	}
 
 	#hero .left-shadow, 
@@ -902,30 +880,146 @@ header .right-shadow {
 	#hero .top-shadow,
 	#hero .bottom-shadow { 
 		animation: none;
+		/* animation-fill-mode: 100%; */
 	}
 
-	main {
-		padding-inline: calc(var(--paddinginline) * 3);
-	}
+				.left-shadow {
+					text-shadow:
+						-.7em 0 .1em rgba(var(--shadowcolor), .4),
+						-1.4em 0 .12em rgba(var(--shadowcolor), .3),
+						-2.1em 0 .13em rgba(var(--shadowcolor), .2),
+						-2.8em 0 .14em rgba(var(--shadowcolor), .1),
+						-3.5em 0 .14em rgba(var(--shadowcolor), .1),
+						-4.2em 0 .14em rgba(var(--shadowcolor), .1),
+						-4.9em 0 .14em rgba(var(--shadowcolor), .1),
+						-5.6em 0 .14em rgba(var(--shadowcolor), .1),
+						-6.3em 0 .14em rgba(var(--shadowcolor), .1),
+						-7em 0 .14em rgba(var(--shadowcolor), .1),
+						-7.7em 0 .14em rgba(var(--shadowcolor), .1),
+						-8.4em 0 .14em rgba(var(--shadowcolor), .1),
+						-9.1em 0 .14em rgba(var(--shadowcolor), .1),
+						-9.8em 0 .14em rgba(var(--shadowcolor), .1),
+						-10.5em 0 .14em rgba(var(--shadowcolor), .1),
+						-11.2em 0 .14em rgba(var(--shadowcolor), .1),
+						-11.9em 0 .14em rgba(var(--shadowcolor), .1),
+						-12.6em 0 .14em rgba(var(--shadowcolor), .1),
+						-13.3em 0 .14em rgba(var(--shadowcolor), .1),
+						-14em 0 .14em rgba(var(--shadowcolor), .1),
+						-14.7em 0 .14em rgba(var(--shadowcolor), .1),
+						-15.4em 0 .14em rgba(var(--shadowcolor), .1),
+						-16.1em 0 .14em rgba(var(--shadowcolor), .1),
+						-16.8em 0 .14em rgba(var(--shadowcolor), .1);
+				}
 
-	article { 
+				.right-shadow {
+					text-shadow:
+						0.7em 0 .1em rgba(var(--shadowcolor), .4),
+						1.4em 0 .12em rgba(var(--shadowcolor), .3),
+						2.1em 0 .13em rgba(var(--shadowcolor), .2),
+						2.8em 0 .14em rgba(var(--shadowcolor), .1),
+						3.5em 0 .14em rgba(var(--shadowcolor), .1),
+						4.2em 0 .14em rgba(var(--shadowcolor), .1),
+						4.9em 0 .14em rgba(var(--shadowcolor), .1),
+						5.6em 0 .14em rgba(var(--shadowcolor), .1),
+						6.3em 0 .14em rgba(var(--shadowcolor), .1),
+						7em 0 .14em rgba(var(--shadowcolor), .1),
+						7.7em 0 .14em rgba(var(--shadowcolor), .1),
+						8.4em 0 .14em rgba(var(--shadowcolor), .1),
+						9.1em 0 .14em rgba(var(--shadowcolor), .1),
+						9.8em 0 .14em rgba(var(--shadowcolor), .1),
+						10.5em 0 .14em rgba(var(--shadowcolor), .1),
+						11.2em 0 .14em rgba(var(--shadowcolor), .1),
+						11.9em 0 .14em rgba(var(--shadowcolor), .1),
+						12.6em 0 .14em rgba(var(--shadowcolor), .1),
+						13.3em 0 .14em rgba(var(--shadowcolor), .1),
+						14em 0 .14em rgba(var(--shadowcolor), .1),
+						14.7em 0 .14em rgba(var(--shadowcolor), .1),
+						15.4em 0 .14em rgba(var(--shadowcolor), .1),
+						16.1em 0 .14em rgba(var(--shadowcolor), .1),
+						16.8em 0 .14em rgba(var(--shadowcolor), .1);
+				}
+
+				.top-shadow {
+						text-shadow:
+						0 -.7em .1em rgba(var(--shadowcolor), .4),
+						0 -1.4em .12em rgba(var(--shadowcolor), .3),
+						0 -2.1em .13em rgba(var(--shadowcolor), .2),
+						0 -2.8em .14em rgba(var(--shadowcolor), .1),
+						0 -3.5em .14em rgba(var(--shadowcolor), .1),
+						0 -4.2em .14em rgba(var(--shadowcolor), .1),
+						0 -4.9em .14em rgba(var(--shadowcolor), .1),
+						0 -5.6em .14em rgba(var(--shadowcolor), .1);
+				}
+
+				.bottom-shadow {
+						text-shadow:
+							0 .7em .1em rgba(var(--shadowcolor), .4),
+							0 1.4em .12em rgba(var(--shadowcolor), .3),
+							0 2.1em .13em rgba(var(--shadowcolor), .2),
+							0 2.8em .14em rgba(var(--shadowcolor), .1),
+							0 3.5em .14em rgba(var(--shadowcolor), .1),
+							0 4.2em .14em rgba(var(--shadowcolor), .1),
+							0 4.9em .14em rgba(var(--shadowcolor), .1),
+							0 5.6em .14em rgba(var(--shadowcolor), .1);
+				}
+
+				.quote-left {
+					text-shadow:
+						-.4em 0 .05em rgba(var(--shadowcolor), .5),
+						-.8em 0 .06em rgba(var(--shadowcolor), .4),
+						-1.2em 0 .07em rgba(var(--shadowcolor), .3),
+						-1.6em 0 .08em rgba(var(--shadowcolor), .2),
+						-2em 0 .08em rgba(var(--shadowcolor), .2),
+						-2.4em 0 .08em rgba(var(--shadowcolor), .2),
+						-2.8em 0 .08em rgba(var(--shadowcolor), .2),
+						-3.2em 0 .08em rgba(var(--shadowcolor), .2);
+				}
+
+				.quote-right {
+					text-shadow:
+						.4em 0 .05em rgba(var(--shadowcolor), .5),
+						.8em 0 .06em rgba(var(--shadowcolor), .4),
+						1.2em 0 .07em rgba(var(--shadowcolor), .3),
+						1.6em 0 .08em rgba(var(--shadowcolor), .2),
+						2em 0 .08em rgba(var(--shadowcolor), .2),
+						2.4em 0 .08em rgba(var(--shadowcolor), .2),
+						2.8em 0 .08em rgba(var(--shadowcolor), .2),
+						3.2em 0 .08em rgba(var(--shadowcolor), .2);
+				}
+
+	article, 
+	#time-for-change > section > p:nth-child(3),
+	#time-for-change > section > .blockquote-section { 
 		break-before: page;
-		page-break-before: always;
 	}
 
-	article:first-of-type {
-		break-before: auto;
-		page-break-before: auto;
+	aside {
+		padding-block-start: var(--paddingmargin);
 	}
 
 	.quote-left { 
-		text-align: start;
+		text-align: end;
 	}
 
 	.quote-right { 
-		text-align: end; 
+		text-align: start; 
 	}
 
+	footer {
+		visibility: hidden;
+	}
+
+}
+
+
+
+
+/* -----------------Accessibility, Device states----------------- */
+
+@media (hover: none) {
+	.links {
+		font-size: calc(var(--fontsizep) * 1.5);
+	}
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -937,3 +1031,11 @@ header .right-shadow {
 		text-shadow: 0 0 0 rgba(var(--shadowcolor), .4);
 	}
 }
+
+/* @media (prefers-color-scheme: dark) {
+	:root {
+		--backgroundcolor: 0, 0, 0;
+		--shadowcolor: 255, 255, 255;
+	}
+} */
+
